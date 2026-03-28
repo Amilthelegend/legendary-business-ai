@@ -826,7 +826,7 @@
     </button>
 
     <div class="error-msg" id="errorMsg"></div>
-    <div class="free-notice">Free plan: <span>Unlimited generations</span> during beta · No signup required</div>
+    <div class="free-notice" id="genCounter">Free plan: <span>3 generations remaining today</span></div>
 
   </div>
 
@@ -843,11 +843,78 @@
     <div class="extras-grid" id="extrasGrid"></div>
 
     <div class="upsell-card">
-      <div class="upsell-text">
-        <h3>🚀 Want 50 Done-For-You Prompt Templates?</h3>
-        <p>Get the complete Small Business Marketing Machine — 50 AI prompts for social media, email, ads, copywriting & growth strategy.</p>
+      <div style="display:flex;flex-direction:column;gap:20px;width:100%">
+        
+        <!-- Top row -->
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap">
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(240,180,41,0.12);border:1px solid rgba(240,180,41,0.25);color:#fcd34d;font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:12px;letter-spacing:0.5px;text-transform:uppercase">
+              ✦ Upgrade Available
+            </div>
+            <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;line-height:1.2">
+              Unlock Unlimited Captions
+            </h3>
+            <p style="font-size:13px;color:#8b9ab5;line-height:1.6;max-width:380px">
+              You're on the free plan (3 generations/day). Upgrade to Pro for unlimited daily generations, all platforms, and new AI tools added every month.
+            </p>
+          </div>
+          <div style="text-align:center;flex-shrink:0">
+            <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1;margin-bottom:4px">$9</div>
+            <div style="font-size:12px;color:#8b9ab5">per month</div>
+            <div style="font-size:11px;color:#4a5568;margin-top:2px">Cancel anytime</div>
+          </div>
+        </div>
+
+        <!-- Features row -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:20px;margin-bottom:4px">⚡</div>
+            <div style="font-size:13px;font-weight:600;color:#f8f9ff;margin-bottom:2px">Unlimited</div>
+            <div style="font-size:11px;color:#8b9ab5">generations daily</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:20px;margin-bottom:4px">📱</div>
+            <div style="font-size:13px;font-weight:600;color:#f8f9ff;margin-bottom:2px">5 Platforms</div>
+            <div style="font-size:11px;color:#8b9ab5">Instagram to LinkedIn</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:20px;margin-bottom:4px">🔄</div>
+            <div style="font-size:13px;font-weight:600;color:#f8f9ff;margin-bottom:2px">New Tools</div>
+            <div style="font-size:11px;color:#8b9ab5">added every month</div>
+          </div>
+        </div>
+
+        <!-- CTA row -->
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <a href="https://buy.stripe.com/bJebJ16Af4N81wK3Uw63K04" target="_blank"
+             style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#7c5cfc,#5b3fd4);border-radius:10px;color:white;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 20px rgba(124,92,252,0.3);white-space:nowrap"
+             onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(124,92,252,0.5)'"
+             onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(124,92,252,0.3)'">
+            ✦ Upgrade to Pro — $9/month
+          </a>
+          <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#4a5568">
+            <span style="color:#2dd4bf">🔒</span> Secure payment via Stripe
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div style="height:1px;background:rgba(255,255,255,0.06)"></div>
+
+        <!-- Prompt pack upsell -->
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#f8f9ff;margin-bottom:4px">🚀 Also love done-for-you prompts?</div>
+            <div style="font-size:12px;color:#8b9ab5">Get 50 fill-in-the-blank AI prompts for marketing, email, ads & more.</div>
+          </div>
+          <a href="https://legendarycreation.gumroad.com/l/smb-marketing-machine" target="_blank"
+             style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:rgba(240,180,41,0.12);border:1px solid rgba(240,180,41,0.3);border-radius:8px;color:#fcd34d;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;white-space:nowrap"
+             onmouseover="this.style.background='rgba(240,180,41,0.2)'"
+             onmouseout="this.style.background='rgba(240,180,41,0.12)'">
+            Get the Prompt Pack — $17 →
+          </a>
+        </div>
+
       </div>
-      <a href="https://legendarycreation.gumroad.com/l/smb-marketing-machine" target="_blank" class="upsell-btn">Get the Full Pack — $17 →</a>
     </div>
 
   </div>
@@ -861,6 +928,62 @@
     © 2025 Legendary Business AI
   </div>
 </footer>
+
+<!-- PRO MODAL -->
+<div id="proModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);z-index:9999;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#0f1a2e;border:1px solid rgba(124,92,252,0.3);border-radius:20px;padding:40px;max-width:480px;width:100%;position:relative;box-shadow:0 0 60px rgba(124,92,252,0.2)">
+    
+    <button onclick="closeProModal()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.08);border:none;color:#8b9ab5;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:16px">✕</button>
+    
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="font-size:40px;margin-bottom:12px">✨</div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:8px">Upgrade to Pro</h2>
+      <p style="color:#8b9ab5;font-size:14px">Unlimited captions for your small business</p>
+    </div>
+
+    <!-- Pricing -->
+    <div style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);border-radius:14px;padding:24px;margin-bottom:24px;text-align:center">
+      <div style="font-size:13px;color:#9b7ffe;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Pro Plan</div>
+      <div style="font-family:'Syne',sans-serif;font-size:42px;font-weight:800;margin-bottom:4px">$9<span style="font-size:18px;color:#8b9ab5">/month</span></div>
+      <div style="font-size:12px;color:#8b9ab5">Cancel anytime · No contracts</div>
+    </div>
+
+    <!-- Features -->
+    <div style="margin-bottom:28px">
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;color:#c4b5fd">
+        <span style="color:#2dd4bf;font-size:16px">✓</span>Unlimited caption generations
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;color:#c4b5fd">
+        <span style="color:#2dd4bf;font-size:16px">✓</span>5 platforms supported
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;color:#c4b5fd">
+        <span style="color:#2dd4bf;font-size:16px">✓</span>All tone options
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;color:#c4b5fd">
+        <span style="color:#2dd4bf;font-size:16px">✓</span>Hashtag suggestions included
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;color:#c4b5fd">
+        <span style="color:#2dd4bf;font-size:16px">✓</span>Best time to post tips
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;font-size:14px;color:#c4b5fd">
+        <span style="color:#2dd4bf;font-size:16px">✓</span>Priority support
+      </div>
+    </div>
+
+    <!-- Stripe Button -->
+    <a href="https://buy.stripe.com/bJebJ16Af4N81wK3Uw63K04" target="_blank" 
+       style="display:block;width:100%;padding:16px;background:linear-gradient(135deg,#7c5cfc,#5b3fd4);border:none;border-radius:12px;color:white;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;transition:all 0.3s;letter-spacing:0.3px;box-shadow:0 4px 20px rgba(124,92,252,0.3)"
+       onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(124,92,252,0.5)'"
+       onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(124,92,252,0.3)'">
+      ✦ Upgrade to Pro — $9/month
+    </a>
+
+    <div style="text-align:center;margin-top:12px;font-size:12px;color:#4a5568">
+      🔒 Secure payment via Stripe · Cancel anytime · Instant access
+    </div>
+
+  </div>
+</div>
 
 <script>
   let selectedPlatform = 'Instagram';
@@ -909,6 +1032,12 @@
     const errorMsg = document.getElementById('errorMsg');
 
     errorMsg.style.display = 'none';
+
+    // Check free plan limit
+    if (!isPro && generationCount >= FREE_LIMIT) {
+      showProModal();
+      return;
+    }
 
     if (!businessType || !targetAudience || !postTopic) {
       errorMsg.textContent = '⚠️ Please fill in all fields before generating.';
@@ -1010,6 +1139,20 @@ Return ONLY the JSON, no other text.`;
 
       displayResults(parsed);
 
+      // Increment counter for free plan
+      if (!isPro) {
+        generationCount++;
+        localStorage.setItem('gen_count', generationCount);
+        // Reset daily
+        const today = new Date().toDateString();
+        const lastReset = localStorage.getItem('last_reset');
+        if (lastReset !== today) {
+          generationCount = 1;
+          localStorage.setItem('gen_count', '1');
+          localStorage.setItem('last_reset', today);
+        }
+      }
+
     } catch (error) {
       errorMsg.textContent = '⚠️ ' + (error.message || 'Something went wrong. Please check your API key and try again.');
       errorMsg.style.display = 'block';
@@ -1020,11 +1163,34 @@ Return ONLY the JSON, no other text.`;
     }
   }
 
+  // Store captions globally for copy fix
+  let generatedCaptions = [];
+  let generatedHashtags = [];
+
+  // Generation counter for free plan
+  let generationCount = parseInt(localStorage.getItem('gen_count') || '0');
+  const FREE_LIMIT = 3;
+  const isPro = localStorage.getItem('is_pro') === 'true';
+
+  function updateGenerationCounter() {
+    const counter = document.getElementById('genCounter');
+    if (isPro) {
+      counter.innerHTML = '✨ <span style="color:var(--gold2)">Pro Plan</span> — Unlimited generations';
+    } else {
+      const remaining = Math.max(0, FREE_LIMIT - generationCount);
+      counter.innerHTML = `Free plan: <span>${remaining} generation${remaining !== 1 ? 's' : ''} remaining today</span> · <a href="#" onclick="showProModal()" style="color:var(--purple2);text-decoration:none">Upgrade to Pro →</a>`;
+    }
+  }
+
   function displayResults(data) {
     const resultsSection = document.getElementById('resultsSection');
     const captionsList = document.getElementById('captionsList');
     const extrasGrid = document.getElementById('extrasGrid');
     const resultsMeta = document.getElementById('resultsMeta');
+
+    // Store globally for copy fix
+    generatedCaptions = data.captions;
+    generatedHashtags = data.hashtags;
 
     resultsMeta.textContent = `${selectedPlatform} · ${selectedTone}`;
     captionsList.innerHTML = '';
@@ -1033,31 +1199,68 @@ Return ONLY the JSON, no other text.`;
     data.captions.forEach((caption, i) => {
       const card = document.createElement('div');
       card.className = 'caption-card';
-      card.innerHTML = `
-        <div class="caption-num">Caption ${i + 1} of 5</div>
-        <div class="caption-text">${escapeHtml(caption)}</div>
-        <div class="caption-actions">
-          <button class="copy-btn" onclick="copyCaption(this, ${JSON.stringify(caption)})">
-            📋 Copy Caption
-          </button>
-        </div>
-      `;
+
+      // Create elements properly instead of innerHTML for copy fix
+      const numDiv = document.createElement('div');
+      numDiv.className = 'caption-num';
+      numDiv.textContent = `Caption ${i + 1} of 5`;
+
+      const textDiv = document.createElement('div');
+      textDiv.className = 'caption-text';
+      textDiv.textContent = caption;
+
+      const actionsDiv = document.createElement('div');
+      actionsDiv.className = 'caption-actions';
+
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'copy-btn';
+      copyBtn.textContent = '📋 Copy Caption';
+      copyBtn.setAttribute('data-index', i);
+      copyBtn.addEventListener('click', function() {
+        copyCaption(this, generatedCaptions[i]);
+      });
+
+      actionsDiv.appendChild(copyBtn);
+      card.appendChild(numDiv);
+      card.appendChild(textDiv);
+      card.appendChild(actionsDiv);
       captionsList.appendChild(card);
     });
 
-    // Hashtags
+    // Hashtags card
     const hashtagsCard = document.createElement('div');
     hashtagsCard.className = 'extra-card';
-    hashtagsCard.innerHTML = `
-      <div class="extra-title"># Hashtags</div>
-      <div class="extra-content">
-        ${data.hashtags.map(h => `<span class="hashtag">#${h.replace('#','')}</span>`).join('')}
-        <br><br>
-        <button class="copy-btn" style="margin-top:4px" onclick="copyCaption(this, '${data.hashtags.map(h => '#'+h.replace('#','')).join(' ')}')">📋 Copy All Hashtags</button>
-      </div>
-    `;
 
-    // Tips
+    const hashtagTitle = document.createElement('div');
+    hashtagTitle.className = 'extra-title';
+    hashtagTitle.textContent = '# Hashtags';
+
+    const hashtagContent = document.createElement('div');
+    hashtagContent.className = 'extra-content';
+
+    data.hashtags.forEach(h => {
+      const span = document.createElement('span');
+      span.className = 'hashtag';
+      span.textContent = '#' + h.replace('#', '');
+      hashtagContent.appendChild(span);
+    });
+
+    const copyHashtagBtn = document.createElement('button');
+    copyHashtagBtn.className = 'copy-btn';
+    copyHashtagBtn.style.marginTop = '10px';
+    copyHashtagBtn.textContent = '📋 Copy All Hashtags';
+    copyHashtagBtn.addEventListener('click', function() {
+      const hashtagText = generatedHashtags.map(h => '#' + h.replace('#', '')).join(' ');
+      copyCaption(this, hashtagText);
+    });
+
+    hashtagContent.appendChild(document.createElement('br'));
+    hashtagContent.appendChild(document.createElement('br'));
+    hashtagContent.appendChild(copyHashtagBtn);
+    hashtagsCard.appendChild(hashtagTitle);
+    hashtagsCard.appendChild(hashtagContent);
+
+    // Tips card
     const tipsCard = document.createElement('div');
     tipsCard.className = 'extra-card';
     tipsCard.innerHTML = `
@@ -1072,17 +1275,49 @@ Return ONLY the JSON, no other text.`;
 
     resultsSection.style.display = 'block';
     resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Update counter
+    updateGenerationCounter();
   }
 
   function copyCaption(btn, text) {
-    navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = '✓ Copied!';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = '📋 Copy Caption';
-        btn.classList.remove('copied');
-      }, 2000);
-    });
+    // Fallback for browsers that don't support clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showCopied(btn);
+      }).catch(() => {
+        fallbackCopy(text, btn);
+      });
+    } else {
+      fallbackCopy(text, btn);
+    }
+  }
+
+  function fallbackCopy(text, btn) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      showCopied(btn);
+    } catch (err) {
+      alert('Copy failed. Please manually select and copy the text.');
+    }
+    document.body.removeChild(textarea);
+  }
+
+  function showCopied(btn) {
+    const original = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 2000);
   }
 
   function escapeHtml(text) {
@@ -1093,6 +1328,18 @@ Return ONLY the JSON, no other text.`;
       .replace(/"/g, '&quot;')
       .replace(/\n/g, '<br>');
   }
+
+  // ── PRO PLAN & STRIPE ─────────────────────────────────────
+  function showProModal() {
+    document.getElementById('proModal').style.display = 'flex';
+  }
+
+  function closeProModal() {
+    document.getElementById('proModal').style.display = 'none';
+  }
+
+  // Initialize counter on load
+  updateGenerationCounter();
 </script>
 </body>
 </html>
