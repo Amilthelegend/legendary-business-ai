@@ -274,18 +274,19 @@ footer a:hover{color:var(--white)}
         <p>Get a complete 30-day marketing plan tailored to your business, goals, budget and audience — in under a minute.</p>
         <span class="tool-tag tag-free">✦ Free to Use</span>
       </a>
-      <div class="tool-card tool-card-3 tool-card-coming">
+      <a class="tool-card tool-card-3" href="#" onclick="showTool('naming'); return false;">
+        <div class="tool-arrow">↗</div>
         <div class="tool-icon icon-amber">✨</div>
-        <h3>Brand Voice Analyzer</h3>
-        <p>Analyze and define your brand voice, tone, and messaging style. Get a complete brand voice guide in seconds.</p>
-        <span class="tool-tag tag-soon">🔜 Coming Soon</span>
-      </div>
+        <h3>AI Business Name Generator</h3>
+        <p>Generate 10 unique business name ideas with taglines, domain tips and branding notes — tailored to your vision.</p>
+        <span class="tool-tag tag-free">✦ Free to Use</span>
+      </a>
     </div>
 
     <div class="pro-banner">
       <div class="pro-banner-left">
         <h3>Unlock Unlimited Access with Pro</h3>
-        <p>Free plan gives you 3 uses per day per tool. Upgrade to Pro for unlimited generations across all current and future tools.</p>
+        <p>Free plan gives you 3 uses per day per tool. Upgrade to Pro for unlimited generations across all 3 tools — current and future.</p>
         <div class="pro-features">
           <div class="pro-feat">Unlimited generations</div>
           <div class="pro-feat">All tools included</div>
@@ -436,6 +437,81 @@ footer a:hover{color:var(--white)}
   </div>
 </div>
 
+<!-- BUSINESS NAME GENERATOR -->
+<div id="namingPage" class="tool-page">
+  <div class="wrap">
+    <div class="tool-header">
+      <button class="back-btn" onclick="showHome()">← Back to Tools</button>
+      <div style="width:1px;height:16px;background:var(--border)"></div>
+      <div class="tool-header-title">AI Business Name Generator</div>
+    </div>
+    <div class="api-bar" id="namingApiBar">
+      <div class="api-bar-icon">🔑</div>
+      <div class="api-bar-body">
+        <p><strong>One-time setup:</strong> Enter your free Groq API key to power the generator. <a href="https://console.groq.com" target="_blank">Get your free key →</a></p>
+        <div class="api-row">
+          <input type="password" id="namingApiInput" placeholder="gsk_xxxxxxxxxxxxxxxxxxxx">
+          <button class="btn-save-key" onclick="saveKey('naming')">Save Key</button>
+        </div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-grid-2">
+        <div class="field span2">
+          <label>What does your business do? <span class="req">*</span></label>
+          <textarea id="n_description" placeholder="e.g. We help small business owners create professional social media content using AI tools. We offer templates, prompt packs and done-for-you content..."></textarea>
+        </div>
+        <div class="field">
+          <label>Target Audience <span class="req">*</span></label>
+          <input type="text" id="n_audience" placeholder="e.g. Small business owners, freelancers, entrepreneurs...">
+        </div>
+        <div class="field">
+          <label>Industry / Niche <span class="req">*</span></label>
+          <input type="text" id="n_industry" placeholder="e.g. Marketing, Health & Wellness, Tech, Food...">
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:18px">
+        <label>Brand Personality <span class="req">*</span></label>
+        <div class="chips">
+          <button class="chip active" onclick="selectChip(this,'n_personality','Modern & Professional')">💼 Modern & Professional</button>
+          <button class="chip" onclick="selectChip(this,'n_personality','Friendly & Approachable')">😊 Friendly & Approachable</button>
+          <button class="chip" onclick="selectChip(this,'n_personality','Bold & Disruptive')">⚡ Bold & Disruptive</button>
+          <button class="chip" onclick="selectChip(this,'n_personality','Luxury & Premium')">✨ Luxury & Premium</button>
+          <button class="chip" onclick="selectChip(this,'n_personality','Playful & Creative')">🎨 Playful & Creative</button>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:20px">
+        <label>Preferred Name Style</label>
+        <div class="chips">
+          <button class="chip active" onclick="selectChip(this,'n_style','Mix of all styles')">🎯 Mix of All Styles</button>
+          <button class="chip" onclick="selectChip(this,'n_style','Single memorable word')">1️⃣ Single Word</button>
+          <button class="chip" onclick="selectChip(this,'n_style','Two word combination')">2️⃣ Two Words</button>
+          <button class="chip" onclick="selectChip(this,'n_style','Descriptive and clear')">📝 Descriptive</button>
+          <button class="chip" onclick="selectChip(this,'n_style','Abstract or invented word')">💫 Abstract/Invented</button>
+        </div>
+      </div>
+
+      <button class="btn-generate" id="namingGenBtn" onclick="generateBusinessNames()">
+        <div class="spinner" id="namingSpinner"></div>
+        <span id="namingBtnText">✦ Generate My Business Names</span>
+      </button>
+      <div class="error-box" id="namingError"></div>
+      <div class="gen-counter" id="namingCounter"></div>
+    </div>
+
+    <div class="results-wrap" id="namingResults">
+      <div class="results-header">
+        <div class="results-title">Your Business Name Ideas</div>
+        <div class="results-badge" id="namingMeta">10 Names Generated</div>
+      </div>
+      <div id="namingList"></div>
+      <div id="namingUpsell"></div>
+    </div>
+  </div>
+</div>
+
 <!-- PRO MODAL -->
 <div class="modal-overlay" id="proModal">
   <div class="modal">
@@ -451,9 +527,9 @@ footer a:hover{color:var(--white)}
     <div class="modal-features">
       <div class="modal-feat"><span class="modal-feat-check">✓</span>Unlimited caption generations daily</div>
       <div class="modal-feat"><span class="modal-feat-check">✓</span>Unlimited marketing plan generations</div>
+      <div class="modal-feat"><span class="modal-feat-check">✓</span>Unlimited business name generations</div>
       <div class="modal-feat"><span class="modal-feat-check">✓</span>All 5 social media platforms</div>
       <div class="modal-feat"><span class="modal-feat-check">✓</span>New tools added every month</div>
-      <div class="modal-feat"><span class="modal-feat-check">✓</span>Hashtag suggestions & posting tips</div>
       <div class="modal-feat"><span class="modal-feat-check">✓</span>Priority support</div>
     </div>
     <a href="https://buy.stripe.com/bJebJ16Af4N81wK3Uw63K04" target="_blank" class="btn-modal-upgrade">✦ Upgrade to Pro — $9/month</a>
@@ -472,7 +548,7 @@ footer a:hover{color:var(--white)}
 let apiKey = localStorage.getItem('lb_api_key') || '';
 const FREE_LIMIT = 3;
 let genCounts = JSON.parse(localStorage.getItem('lb_gen_counts') || '{}');
-let sv = { c_platform:'Instagram', c_tone:'Warm & Friendly', m_goal:'Get more customers' };
+let sv = { c_platform:'Instagram', c_tone:'Warm & Friendly', m_goal:'Get more customers', n_personality:'Modern & Professional', n_style:'Mix of all styles' };
 let captionData = [];
 
 const today = new Date().toDateString();
@@ -550,16 +626,91 @@ async function callGroq(prompt, maxTokens=2500) {
 }
 
 function parseJSON(text) {
-  try { return JSON.parse(text); }
-  catch { const m=text.match(/\{[\s\S]*\}/); if(m) return JSON.parse(m[0]); throw new Error('Could not parse response. Please try again.'); }
+  // Clean control characters that break JSON parsing
+  const clean = text
+    .replace(/[\x00-\x1F\x7F]/g, c => {
+      // Keep valid JSON escape sequences
+      if (c === '\n') return '\\n';
+      if (c === '\r') return '\\r';
+      if (c === '\t') return '\\t';
+      return '';
+    });
+  try { return JSON.parse(clean); }
+  catch {
+    // Try extracting JSON object
+    const m = clean.match(/\{[\s\S]*\}/);
+    if (m) {
+      try { return JSON.parse(m[0]); }
+      catch {
+        // Last resort: sanitize more aggressively
+        const sanitized = m[0]
+          .replace(/\\'/g, "'")
+          .replace(/([^\\])\\([^"\\\/bfnrtu])/g, '$1$2')
+          .replace(/\n/g, '\\n')
+          .replace(/\r/g, '\\r')
+          .replace(/\t/g, '\\t');
+        try { return JSON.parse(sanitized); }
+        catch { throw new Error('Could not parse AI response. Please try generating again.'); }
+      }
+    }
+    throw new Error('Could not parse AI response. Please try generating again.');
+  }
+}
+
+// Parse text-based plan response - no JSON needed, much more reliable
+function parseTextPlan(text) {
+  const sections = {
+    summary: '', week1: '', week2: '', week3: '', week4: '',
+    contentIdeas: '', budget: '', metrics: '', aiPrompts: ''
+  };
+  const markers = {
+    'SUMMARY:': 'summary',
+    'WEEK1:': 'week1',
+    'WEEK2:': 'week2',
+    'WEEK3:': 'week3',
+    'WEEK4:': 'week4',
+    'CONTENT:': 'contentIdeas',
+    'BUDGET:': 'budget',
+    'METRICS:': 'metrics',
+    'PROMPTS:': 'aiPrompts'
+  };
+  const lines = text.split('\n');
+  let currentKey = null;
+  let buffer = [];
+  for (const line of lines) {
+    const trimmed = line.trim();
+    let foundMarker = false;
+    for (const [marker, key] of Object.entries(markers)) {
+      if (trimmed.toUpperCase().startsWith(marker)) {
+        if (currentKey && buffer.length > 0) {
+          sections[currentKey] = buffer.join('\n').trim();
+        }
+        currentKey = key;
+        buffer = [];
+        const rest = trimmed.slice(marker.length).trim();
+        if (rest) buffer.push(rest);
+        foundMarker = true;
+        break;
+      }
+    }
+    if (!foundMarker && currentKey) { buffer.push(line); }
+  }
+  if (currentKey && buffer.length > 0) {
+    sections[currentKey] = buffer.join('\n').trim();
+  }
+  if (!sections.summary) { sections.summary = text.substring(0, 500); }
+  return sections;
 }
 
 function setLoading(tool, loading) {
   document.getElementById(tool+'GenBtn').disabled = loading;
   document.getElementById(tool+'Spinner').style.display = loading?'block':'none';
-  document.getElementById(tool+'BtnText').textContent = loading
-    ? (tool==='caption'?'Generating your captions...':'Building your marketing plan...')
-    : (tool==='caption'?'✦ Generate My Captions':'✦ Generate My 30-Day Marketing Plan');
+  const texts = {
+    caption: ['Generating your captions...', '✦ Generate My Captions'],
+    marketing: ['Building your marketing plan...', '✦ Generate My 30-Day Marketing Plan'],
+    naming: ['Generating your business names...', '✦ Generate My Business Names']
+  };
+  document.getElementById(tool+'BtnText').textContent = loading ? texts[tool][0] : texts[tool][1];
 }
 
 function copyText(btn, text) {
@@ -610,11 +761,13 @@ Post Topic: ${topic}
 Platform: ${sv.c_platform} (${limits[sv.c_platform]})
 Tone: ${sv.c_tone}
 
-Requirements: Each caption distinctly different. Authentic, human-sounding. Relevant emojis. Clear CTA. Vary hooks: curiosity, benefit, story, question, bold statement.
+IMPORTANT: Return ONLY valid JSON. Do not use apostrophes in the JSON values - use full words instead (e.g. "do not" instead of "don't"). No backslashes. No special characters that would break JSON.
+
+Requirements: Each caption distinctly different. Human-sounding. Relevant emojis. Clear call to action. Vary hooks.
 Also provide 10 hashtags, best time to post tip, 1 CTA suggestion.
 
-Return ONLY valid JSON:
-{"captions":["c1","c2","c3","c4","c5"],"hashtags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"],"bestTime":"tip","ctaSuggestion":"suggestion"}`;
+Return ONLY this exact JSON structure with no other text:
+{"captions":["caption one text","caption two text","caption three text","caption four text","caption five text"],"hashtags":["tag1","tag2","tag3","tag4","tag5","tag6","tag7","tag8","tag9","tag10"],"bestTime":"best time tip here","ctaSuggestion":"CTA suggestion here"}`;
   try {
     const content = await callGroq(prompt,2000);
     const parsed = parseJSON(content);
@@ -678,34 +831,41 @@ async function generateMarketingPlan() {
   if (!bizName||!bizType||!audience){errEl.textContent='⚠️ Please fill in Business Name, Type and Audience.';errEl.style.display='block';return;}
   setLoading('marketing',true);
 
-  const prompt=`You are an expert marketing strategist for small businesses. Create a detailed actionable 30-day marketing plan.
+  const prompt=`Create a 30-day marketing plan for ${bizName}, a ${bizType} targeting ${audience}. Budget: ${budget}. Goal: ${sv.m_goal}. Platforms: ${platforms.length>0?platforms.join(', '):'not specified'}. Challenge: ${challenge||'general growth'}.
 
-Business: ${bizName} — ${bizType}
-Target Audience: ${audience}
-Budget: ${budget}
-Goal: ${sv.m_goal}
-Platforms: ${platforms.length>0?platforms.join(', '):'Not specified'}
-Challenge: ${challenge||'Not specified'}
+Write the plan using EXACTLY these section headers on their own line, followed by the content:
 
-Create a comprehensive plan with these sections. Be SPECIFIC to ${bizName} not generic.
+SUMMARY:
+Write 2-3 sentences summarizing the overall strategy.
 
-Return ONLY valid JSON with these exact keys:
-{
-  "summary": "2-3 sentence executive summary of the strategy",
-  "week1": "Specific daily tasks for Week 1 — Foundation Building. List as numbered steps.",
-  "week2": "Specific tasks for Week 2 — Content Creation and Posting. List as numbered steps.",
-  "week3": "Specific tasks for Week 3 — Engagement and Growth. List as numbered steps.",
-  "week4": "Specific tasks for Week 4 — Analyze Optimize and Scale. List as numbered steps.",
-  "contentIdeas": "10 specific content ideas tailored to ${bizName}. Numbered list.",
-  "budget": "How to allocate the ${budget} budget OR free tactics if no budget. Be specific.",
-  "metrics": "5 specific KPIs with target numbers for month 1. Numbered list.",
-  "aiPrompts": "3 specific AI prompts they can use immediately for their marketing. Each prompt should be complete and fill-in-the-blank ready."
-}`;
+WEEK1:
+List 5 specific foundation building tasks numbered 1 through 5.
+
+WEEK2:
+List 5 specific content creation and posting tasks numbered 1 through 5.
+
+WEEK3:
+List 5 specific engagement and growth tasks numbered 1 through 5.
+
+WEEK4:
+List 5 specific analysis and optimization tasks numbered 1 through 5.
+
+CONTENT:
+List 10 specific content ideas for ${bizName} numbered 1 through 10.
+
+BUDGET:
+Explain how to allocate the ${budget} budget with specific recommendations.
+
+METRICS:
+List 5 specific KPIs with target numbers numbered 1 through 5.
+
+PROMPTS:
+Write 3 complete ready-to-use AI prompts numbered 1 through 3.`;
 
   try {
-    const content = await callGroq(prompt,3000);
-    const parsed = parseJSON(content);
-    displayMarketingPlan(parsed,bizName);
+    const content = await callGroq(prompt, 3000);
+    const parsed = parseTextPlan(content);
+    displayMarketingPlan(parsed, bizName);
     incrementCount('marketing');
   } catch(err) {
     errEl.textContent='⚠️ '+(err.message||'Something went wrong. Please try again.');
@@ -820,8 +980,206 @@ function buildMarketingUpsell() {
   return wrap;
 }
 
-updateCounter('caption');
-updateCounter('marketing');
+// ── Business Name Generator ────────────────────────────────────
+async function generateBusinessNames() {
+  const description = document.getElementById('n_description').value.trim();
+  const audience = document.getElementById('n_audience').value.trim();
+  const industry = document.getElementById('n_industry').value.trim();
+  const errEl = document.getElementById('namingError');
+  errEl.style.display = 'none';
+
+  if (!apiKey) { document.getElementById('namingApiBar').style.display='flex'; errEl.textContent='⚠️ Please enter your Groq API key above.'; errEl.style.display='block'; return; }
+  if ((genCounts['naming']||0) >= FREE_LIMIT) { showProModal(); return; }
+  if (!description || !audience || !industry) { errEl.textContent='⚠️ Please fill in all required fields.'; errEl.style.display='block'; return; }
+
+  setLoading('naming', true);
+
+  const prompt = `You are an expert brand naming strategist. Generate 10 unique creative business name ideas.
+
+Business Details:
+- What it does: ${description}
+- Target Audience: ${audience}
+- Industry/Niche: ${industry}
+- Brand Personality: ${sv.n_personality}
+- Preferred Style: ${sv.n_style}
+
+Requirements for each name:
+- Must be original and memorable
+- Easy to spell and pronounce
+- Works as a brand name across all platforms
+- Avoid generic or overused words
+- Must NOT include trademarked names
+
+For each name provide:
+1. The business name
+2. Why it works (1-2 sentences)
+3. A matching tagline (under 8 words)
+4. Domain tip (e.g. ".com likely available" or "try .co or .io")
+
+Also provide top 3 recommendations with detailed branding notes.
+
+Return ONLY valid JSON:
+{
+  "names": [
+    {"name": "BusinessName", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"},
+    {"name": "BusinessName2", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"},
+    {"name": "BusinessName3", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"},
+    {"name": "BusinessName4", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"},
+    {"name": "BusinessName5", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"},
+    {"name": "BusinessName6", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"},
+    {"name": "BusinessName7", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"},
+    {"name": "BusinessName8", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"},
+    {"name": "BusinessName9", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"},
+    {"name": "BusinessName10", "why": "explanation", "tagline": "tagline here", "domain": "domain tip"}
+  ],
+  "top3": "Detailed recommendation for top 3 names and why they stand out above the rest"
+}`;
+
+  try {
+    const content = await callGroq(prompt, 2500);
+    const parsed = parseJSON(content);
+    displayBusinessNames(parsed);
+    incrementCount('naming');
+  } catch(err) {
+    errEl.textContent = '⚠️ ' + (err.message || 'Something went wrong. Please try again.');
+    errEl.style.display = 'block';
+  } finally {
+    setLoading('naming', false);
+  }
+}
+
+function displayBusinessNames(data) {
+  const list = document.getElementById('namingList');
+  const results = document.getElementById('namingResults');
+  document.getElementById('namingMeta').textContent = '10 Names Generated';
+  list.innerHTML = '';
+
+  // Top 3 recommendation card
+  if (data.top3) {
+    const recCard = document.createElement('div');
+    recCard.className = 'plan-section';
+    recCard.style.animationDelay = '0s';
+    recCard.style.borderColor = 'rgba(245,166,35,0.25)';
+    recCard.style.background = 'rgba(245,166,35,0.04)';
+    const recHdr = document.createElement('div');
+    recHdr.className = 'plan-header';
+    const recTitle = document.createElement('div');
+    recTitle.className = 'plan-title';
+    recTitle.style.color = 'var(--amber2)';
+    recTitle.innerHTML = '<span>🏆</span>Top 3 Recommendations';
+    const recCopy = document.createElement('button');
+    recCopy.className = 'btn-copy';
+    recCopy.textContent = '📋 Copy';
+    recCopy.addEventListener('click', () => copyText(recCopy, data.top3));
+    recHdr.appendChild(recTitle);
+    recHdr.appendChild(recCopy);
+    const recContent = document.createElement('div');
+    recContent.className = 'plan-content';
+    recContent.textContent = data.top3;
+    recCard.appendChild(recHdr);
+    recCard.appendChild(recContent);
+    list.appendChild(recCard);
+  }
+
+  // Individual name cards
+  data.names.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'result-card';
+    card.style.animationDelay = (i * 0.06) + 's';
+
+    const nameRow = document.createElement('div');
+    nameRow.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px';
+
+    const nameText = document.createElement('div');
+    nameText.style.cssText = 'font-family:"Instrument Serif",serif;font-size:24px;letter-spacing:-0.5px;color:var(--white)';
+    nameText.textContent = item.name;
+
+    const numBadge = document.createElement('div');
+    numBadge.style.cssText = 'font-size:10px;font-weight:700;color:var(--amber2);text-transform:uppercase;letter-spacing:1px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);padding:3px 10px;border-radius:100px';
+    numBadge.textContent = `Name ${i+1} of 10`;
+
+    nameRow.appendChild(nameText);
+    nameRow.appendChild(numBadge);
+
+    const tagline = document.createElement('div');
+    tagline.style.cssText = 'font-size:13px;color:var(--violet3);font-style:italic;margin-bottom:8px';
+    tagline.textContent = '"' + item.tagline + '"';
+
+    const why = document.createElement('div');
+    why.style.cssText = 'font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px';
+    why.textContent = item.why;
+
+    const domainBadge = document.createElement('div');
+    domainBadge.style.cssText = 'display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--emerald2);background:rgba(0,200,150,0.08);border:1px solid rgba(0,200,150,0.15);padding:3px 10px;border-radius:6px;margin-bottom:12px';
+    domainBadge.textContent = '🌐 ' + item.domain;
+
+    const actions = document.createElement('div');
+    actions.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap';
+
+    const copyNameBtn = document.createElement('button');
+    copyNameBtn.className = 'btn-copy';
+    copyNameBtn.textContent = '📋 Copy Name';
+    copyNameBtn.addEventListener('click', () => copyText(copyNameBtn, item.name));
+
+    const copyAllBtn = document.createElement('button');
+    copyAllBtn.className = 'btn-copy';
+    copyAllBtn.textContent = '📋 Copy with Tagline';
+    copyAllBtn.addEventListener('click', () => copyText(copyAllBtn, `${item.name} — "${item.tagline}"`));
+
+    actions.appendChild(copyNameBtn);
+    actions.appendChild(copyAllBtn);
+
+    card.appendChild(nameRow);
+    card.appendChild(tagline);
+    card.appendChild(why);
+    card.appendChild(domainBadge);
+    card.appendChild(actions);
+    list.appendChild(card);
+  });
+
+  document.getElementById('namingUpsell').innerHTML = '';
+  document.getElementById('namingUpsell').appendChild(buildNamingUpsell());
+  results.style.display = 'block';
+  results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function buildNamingUpsell() {
+  const wrap = document.createElement('div');
+  wrap.className = 'upsell-wrap';
+  wrap.style.marginTop = '24px';
+  wrap.innerHTML = `
+    <div class="upsell-top">
+      <div>
+        <div class="upsell-badge">✦ Next Step</div>
+        <div class="upsell-title">Now Build Your Complete Brand</div>
+        <p class="upsell-desc">You have your name — now define your brand voice, visual identity, taglines, and messaging with 40 done-for-you AI branding prompts.</p>
+      </div>
+      <div class="upsell-price-wrap">
+        <div class="upsell-price">$24<sub></sub></div>
+        <div class="upsell-period">One time · Lifetime access</div>
+      </div>
+    </div>
+    <div class="upsell-feat-grid">
+      <div class="upsell-feat"><div class="upsell-feat-icon">🎨</div><div class="upsell-feat-title">Brand Identity</div><div class="upsell-feat-sub">Voice, values & story</div></div>
+      <div class="upsell-feat"><div class="upsell-feat-icon">🖼️</div><div class="upsell-feat-title">Visual Direction</div><div class="upsell-feat-sub">Logo, colors & fonts</div></div>
+      <div class="upsell-feat"><div class="upsell-feat-icon">✍️</div><div class="upsell-feat-title">Brand Messaging</div><div class="upsell-feat-sub">Taglines & copy</div></div>
+    </div>
+    <div class="upsell-actions">
+      <a href="https://legendarycreation.gumroad.com/l/ai-branding-kit-smb" target="_blank" class="btn-upgrade" style="background:linear-gradient(135deg,var(--amber),#e09400)">✦ Get the AI Branding Kit — $24</a>
+      <div class="upsell-trust">⚡ Instant download · Lifetime access</div>
+    </div>
+    <div class="divider"></div>
+    <div class="pack-upsell">
+      <div class="pack-upsell-text">
+        <h4>🏆 Want unlimited name generations?</h4>
+        <p>Upgrade to Pro for unlimited generations across all 3 tools — just $9/month.</p>
+      </div>
+      <a href="#" onclick="showProModal();return false;" class="btn-pack">Upgrade to Pro — $9/mo →</a>
+    </div>`;
+  return wrap;
+}
+
+updateCounter('naming');
 </script>
 </body>
 </html>
